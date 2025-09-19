@@ -1,7 +1,6 @@
 import tensorflow as tf
 from tensorflow.keras.layers import Layer, Dense
 import numpy as np
-import os
 
 # Masking
 def create_look_ahead_mask(size):

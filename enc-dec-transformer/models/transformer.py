@@ -7,7 +7,7 @@ from Layers.encoder import Encoder
 from Layers.decoder import Decoder
 
 class Transformer(tf.keras.Model):
-    def __init__(self, num_layers, d_model, num_heads, dff, input_vocab_size, target_vocab_size, pe_input, pe_target, max_seq_length, rate=0.1):
+    def __init__(self, num_layers, d_model, num_heads, dff, input_vocab_size, target_vocab_size, max_seq_length, rate=0.1):
         super(Transformer, self).__init__()
 
         #PreLayers
@@ -15,10 +15,10 @@ class Transformer(tf.keras.Model):
         self.pre_layer_decoder = PreLayer(d_model= d_model, vocab_size= target_vocab_size, max_seq_length=max_seq_length, enc_dec= 1)
 
         #Encoder
-        self.encoder = Encoder(num_layers, d_model, num_heads, dff, input_vocab_size, pe_input, rate)
+        self.encoder = Encoder(num_layers, d_model, num_heads, dff, input_vocab_size, max_seq_length, rate)
 
         #Decoder
-        self.decoder = Decoder(num_layers, d_model, num_heads, dff, target_vocab_size, pe_target, rate)
+        self.decoder = Decoder(num_layers, d_model, num_heads, dff, target_vocab_size, max_seq_length, rate)
 
         #Final Layer
         self.final_layer = Dense(target_vocab_size, activation='softmax') # Usamos el target vocab size para tener la cantidad de tokens como clases.

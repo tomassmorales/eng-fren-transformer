@@ -1,7 +1,6 @@
 import tensorflow as tf
 from tensorflow.keras.layers import Layer, Dense, LayerNormalization, Dropout
-import numpy as np
-from multi_head_attention import MultiHeadAttention
+from .multi_head_attention import MultiHeadAttention
 
 # Decoder Layer
 class DecoderLayer(Layer):
