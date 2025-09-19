@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  tf-gpu:
+    image: tensorflow/tensorflow:latest-gpu
+    container_name: enc-dec-transformer
+    restart: unless-stopped
+    networks:
+      - tfnet
+    volumes:
+      - /mnt/c/Users/serve/OneDrive/Desktop/Projects/eng-fren-transformer/enc-dec-transformer:/workspace
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    command: tail -f /dev/null # Mantener contenedor vivo
+
+networks:
+  tfnet:
+    driver: bridge

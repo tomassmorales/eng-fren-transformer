@@ -1,0 +1,32 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "enc_dec_transformer"
+version = "0.0.1"
+description = "A short description of the project."
+authors = [
+  { name = "tomas-morales" },
+]
+
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    
+]
+requires-python = "~=3.10.0"
+
+
+[tool.ruff]
+line-length = 99
+src = ["enc_dec_transformer"]
+include = ["pyproject.toml", "enc_dec_transformer/**/*.py"]
+
+[tool.ruff.lint]
+extend-select = ["I"]  # Add import sorting
+
+[tool.ruff.lint.isort]
+known-first-party = ["enc_dec_transformer"]
+force-sort-within-sections = true
+
